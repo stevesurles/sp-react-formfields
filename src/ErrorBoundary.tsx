@@ -14,7 +14,7 @@ export default class ErrorBoundary extends React.Component<{}, any> {
     this.setState({ hasError: true, msg: error });
     // You can also log the error to an error reporting service
     // tslint:disable-next-line:no-console
-    console.log(error, info);
+    // console.log(error, info);
   }
 
   public render() {

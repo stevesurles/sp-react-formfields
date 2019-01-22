@@ -39,7 +39,7 @@ export class FormField extends React.Component<IFormFieldProps, any> {
   }
 
   private loadFieldAsync = async type => {
-    console.log(`Loading ${type} field...`);
+    // console.log(`Loading ${type} field...`);
     this.importComponentNameFromTypeString(type);
   }
 

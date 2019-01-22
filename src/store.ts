@@ -120,7 +120,7 @@ const storeConfig = {
       } as IFormManagerProps;
     },
     setFormMode: async (state: IFormManagerProps, actions: IFormManagerActions, mode: number) => {
-      console.log(state);
+    //  console.log(state);
 
       state.CurrentMode = mode;
       state.Fields.forEach(f => f.CurrentMode = mode);
@@ -366,8 +366,8 @@ const getFieldControlValuesForValidatedUpdate = async (): Promise<any[]> => {
       fieldValue = fp.FormFieldValue === null || fp.FormFieldValue === undefined ? null : new Date(Date.parse(fp.FormFieldValue)).format('MM/dd/yyyy HH:mm');
       // fieldValue = d.format('dd/MM/yyyy HH:mm');
 
-      //fieldValue = d.format('MM/dd/yyyy HH:mm');
-      console.log('Date fieldValue: ' + fieldValue);
+      // fieldValue = d.format('MM/dd/yyyy HH:mm');
+     // console.log('Date fieldValue: ' + fieldValue);
     } else if (fp.Type.match(/number/gi)) {
       if (fp.FormFieldValue) {
         if (fp.NumberIsPercent) {
@@ -385,7 +385,7 @@ const getFieldControlValuesForValidatedUpdate = async (): Promise<any[]> => {
     } else {
       fieldValue = fieldValue.toString();
     }
-    console.log(fp.EntityPropertyName + ' = ' + JSON.stringify(fieldValue));
+    // console.log(fp.EntityPropertyName + ' = ' + JSON.stringify(fieldValue));
     toReturn.push({
       ErrorMessage: null,
       FieldName: fp.EntityPropertyName,
@@ -499,10 +499,10 @@ const saveFormData = async (): Promise<ISaveItemResult> => {
 
       // action = globalState.PnPSPRest.web.lists.getById(globalState.CurrentListId).addValidateUpdateItemUsingPath(formDataRegularFields);
       let initialAdding: ItemAddResult = await itemCollection.add();
-      console.log(initialAdding);
+      // console.log(initialAdding);
       if (initialAdding && initialAdding.data && initialAdding.data.Id) {
         currentItemId = parseInt(initialAdding.data.Id);
-        console.log(currentItemId);
+        // console.log(currentItemId);
         FormFieldsStore.actions.setItemId(currentItemId);
       }
     }

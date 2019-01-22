@@ -60,7 +60,7 @@ export default class TermPicker extends React.Component<ITermPickerProps, ITermP
           onRenderItem={this.onRenderItem}
           defaultSelectedItems={this.state.terms || []}
           onChange={items => {
-            console.log(items);
+           // console.log(items);
             this.setState({ terms: items });
             this.props.onChange(items);
           }}

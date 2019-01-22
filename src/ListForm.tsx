@@ -123,7 +123,7 @@ export const ListFormInternal = (props) => {
                     try {
                       SP.UI.ModalDialog.commonModalDialogClose(SP.UI.DialogResult.cancel, null);
                     } catch {
-                      console.log('Error trying to call SP.UI.ModalDialog.commonModalDialogClose - trying to set parent window url');
+                     // console.log('Error trying to call SP.UI.ModalDialog.commonModalDialogClose - trying to set parent window url');
                       window.frames.top.location.href = props.CurrentListDefaultViewUrl;
                     }
                   } else {

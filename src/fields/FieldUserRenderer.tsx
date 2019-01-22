@@ -153,7 +153,7 @@ export class FieldUserRenderer extends BaseFieldRenderer {
     let result = [];
     let promises: Promise<WebEnsureUserResult>[] = [];
     for (let entry of items) {
-      console.log(entry);
+     // console.log(entry);
       if (entry.id === -1) {
         let pp = this.props.pnpSPRest.web.ensureUser(entry.key);
         pp.catch(e => {
@@ -169,7 +169,7 @@ export class FieldUserRenderer extends BaseFieldRenderer {
         });
       } else {
         let selected = this.state.currentSelectedItems.filter(i => i.id.toString() === entry.id);
-        console.log(selected);
+      //  console.log(selected);
         if (selected && selected.length > 0) {
           selected[0].id = selected[0].id.toString();
           result.push(selected[0]);
@@ -220,7 +220,7 @@ export class FieldUserRenderer extends BaseFieldRenderer {
           let result = [];
           if (entries && entries.SearchPrincipalsUsingContextWeb &&
               entries.SearchPrincipalsUsingContextWeb.results && entries.SearchPrincipalsUsingContextWeb.results.length > 0) {
-            console.log(entries.SearchPrincipalsUsingContextWeb.results);
+         //   console.log(entries.SearchPrincipalsUsingContextWeb.results);
             result = entries.SearchPrincipalsUsingContextWeb.results.map(e => ({
               text: e.DisplayName,
               id: e.PrincipalId,
