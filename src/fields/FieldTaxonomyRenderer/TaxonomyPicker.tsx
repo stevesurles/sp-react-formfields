@@ -120,7 +120,7 @@ export class FieldTaxonomyRenderer extends BaseFieldRenderer {
                       allTerms={this.state.termSetAndTerms ? this.state.termSetAndTerms.Terms : []}
                       value={this.state.currentValue}
                       isTermSetSelectable={false}
-                      onChanged={this.termsFromPickerChanged}
+                      onChange={this.termsFromPickerChanged}
                       allowMultipleSelections={props.IsMulti}
                       disabledTermIds={null}
                       disableChildrenOfDisabledParents={null} />

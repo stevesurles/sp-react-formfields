@@ -32,7 +32,7 @@ export class FieldBooleanRenderer extends BaseFieldRenderer {
 
   private renderNewOrEditForm() {
     return (<Toggle
-      onChanged={(newValue) => {
+      onChange={(newValue) => {
         this.setState({ currentValue: newValue });
         this.trySetChangedValue(newValue);
       }}

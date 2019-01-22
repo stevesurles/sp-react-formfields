@@ -81,7 +81,7 @@ export interface ITermPickerProps {
   disabledTermIds?: string[];
   disableChildrenOfDisabledParents?: boolean;
 
-  onChanged: (items: IPickerTerm[]) => void;
+  onChange: (items: IPickerTerm[]) => void;
 }
 
 export interface IPickerTerm {

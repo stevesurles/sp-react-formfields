@@ -77,7 +77,7 @@ export class FieldChoiceRenderer extends BaseFieldRenderer {
           <Dropdown
             key={`dropdown_${this.props.InternalName}`}
             multiSelect={this.props.IsMulti}
-            onChanged={(newValue) => {
+            onChange={(newValue) => {
               this.setState({ ownOption: null }, () => {
                 this.saveFieldDataInternal(newValue);
               });
@@ -94,7 +94,7 @@ export class FieldChoiceRenderer extends BaseFieldRenderer {
         <div style={middleAuxStyle}>&nbsp;</div>
         <div style={auxStyle}>
             <TextField placeholder='Enter own option' value={this.state.ownOption == null ? '' : this.state.ownOption}
-            onChanged={(newValue) => {
+            onChange={(newValue) => {
               if (newValue !== this.state.ownOption) {
                 let currentVal = this.state.currentValue as any[];
                 let newCurrentVal = [];

@@ -61,7 +61,7 @@ export class FieldCurrencyRenderer extends BaseFieldRenderer {
     return (
       <React.Fragment>
         <TextField
-          onChanged={this.onChanged}
+          onChange={this.onChange}
           onKeyPress={this.onKeypress}
           value={this.state.currentValue == null ? '' : this.state.currentValue}
           prefix={currencyObj ? currencyObj.symbol : undefined}
@@ -70,7 +70,7 @@ export class FieldCurrencyRenderer extends BaseFieldRenderer {
     );
   }
 
-  private onChanged = (newValue) => {
+  private onChange = (newValue) => {
     let containsDecimal = false;
     let toSave = newValue;
     if (toSave === '') {

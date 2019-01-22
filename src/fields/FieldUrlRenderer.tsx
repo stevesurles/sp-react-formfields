@@ -70,12 +70,12 @@ export class FieldUrlRenderer extends BaseFieldRenderer {
     return (
       <React.Fragment>
         <TextField
-          onChanged={(newValue) => this.onValueChange(newValue, true)}
+          onChange={(newValue) => this.onValueChange(newValue, true)}
           value={this.state.urlPart == null ? '' : this.state.urlPart}
           placeholder={`Enter a URL`}
         />
         <TextField
-          onChanged={(newValue) => this.onValueChange(newValue, false)}
+          onChange={(newValue) => this.onValueChange(newValue, false)}
           value={this.state.descPart == null ? '' : this.state.descPart}
           placeholder={`Enter display text`}
         />

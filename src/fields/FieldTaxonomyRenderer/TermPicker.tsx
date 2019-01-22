@@ -62,7 +62,7 @@ export default class TermPicker extends React.Component<ITermPickerProps, ITermP
           onChange={items => {
             console.log(items);
             this.setState({ terms: items });
-            this.props.onChanged(items);
+            this.props.onChange(items);
           }}
           itemLimit={!this.props.allowMultipleSelections ? 1 : undefined}
           className={`termBasePicker`}
