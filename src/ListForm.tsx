@@ -98,54 +98,54 @@ export class ListForm extends React.Component<IListFormProps, IListFormProps> {
 export const ListFormInternal = (props) => {
   // console.log(props);
   return <div>
-  <FormHeader CurrentMode={props.CurrentMode as number} Fields={props.Fields} />
-  {props.IsLoading ?
-    <div className='formContainer' style={{ padding: '5em' }}><Spinner title='Loading...' /></div> :
-    <React.Fragment>
-      <CommandBar isSearchBoxVisible={false} key='commandBar'
-        items={props.getButtonsByFormMode(props.CurrentMode)}
-        farItems={[
-          {
-            className: 'ms-bgColor-neutral',
-            key: 'close',
-            name: 'Close',
-            iconProps: {
-              iconName: 'RemoveFilter'
-            },
-            onClick: (ev) => {
-              ev.preventDefault();
-              if (props.closeForm) {
-                props.closeForm();
-              } else {
-                // check are we in a classic modal dialog?
-                let isdlg = getQueryString(null, 'isdlg');
-                if (isdlg && isdlg === '1') {
-                  try {
-                    SP.UI.ModalDialog.commonModalDialogClose(SP.UI.DialogResult.cancel, null);
-                  } catch {
-                    console.log('Error trying to call SP.UI.ModalDialog.commonModalDialogClose - trying to set parent window url');
-                    window.frames.top.location.href = props.CurrentListDefaultViewUrl;
-                  }
+    <FormHeader CurrentMode={props.CurrentMode as number} Fields={props.Fields} />
+    {props.IsLoading ?
+      <div className='formContainer' style={{ padding: '5em' }}><Spinner title='Loading...' /></div> :
+      <React.Fragment>
+        <CommandBar key='commandBar'
+          items={props.getButtonsByFormMode(props.CurrentMode)}
+          farItems={[
+            {
+              className: 'ms-bgColor-neutral',
+              key: 'close',
+              name: 'Close',
+              iconProps: {
+                iconName: 'RemoveFilter'
+              },
+              onClick: (ev) => {
+                ev.preventDefault();
+                if (props.closeForm) {
+                  props.closeForm();
                 } else {
-                  window.location.href = props.CurrentListDefaultViewUrl;
+                  // check are we in a classic modal dialog?
+                  let isdlg = getQueryString(null, 'isdlg');
+                  if (isdlg && isdlg === '1') {
+                    try {
+                      SP.UI.ModalDialog.commonModalDialogClose(SP.UI.DialogResult.cancel, null);
+                    } catch {
+                      console.log('Error trying to call SP.UI.ModalDialog.commonModalDialogClose - trying to set parent window url');
+                      window.frames.top.location.href = props.CurrentListDefaultViewUrl;
+                    }
+                  } else {
+                    window.location.href = props.CurrentListDefaultViewUrl;
+                  }
                 }
               }
             }
-          }
-        ]}
-      />
-    {props.children ? props.children : props.Fields.map(f => (
-      <div className='formRow' key={`formRow_${f.InternalName}`}>
-        <div className='rowLabel' key={`formLabelContainer_${f.InternalName}`}>
-          <FormFieldLabel key={`formFieldLabel_${f.InternalName}`} InternalName={f.InternalName} />
-        </div>
-        <div className='rowField' key={`formFieldContainer_${f.InternalName}`}>
-          <FormField key={`formfield_${f.InternalName}`} InternalName={f.InternalName} FormMode={f.CurrentMode} />
-          {/* <FormField key={`formfield_${f.InternalName}`} {...f} /> */}
-        </div>
-      </div>
-    ))}
-    </React.Fragment>
-  }
-</div>;
+          ]}
+        />
+        {props.children ? props.children : props.Fields.map(f => (
+          <div className='formRow' key={`formRow_${f.InternalName}`}>
+            <div className='rowLabel' key={`formLabelContainer_${f.InternalName}`}>
+              <FormFieldLabel key={`formFieldLabel_${f.InternalName}`} InternalName={f.InternalName} />
+            </div>
+            <div className='rowField' key={`formFieldContainer_${f.InternalName}`}>
+              <FormField key={`formfield_${f.InternalName}`} InternalName={f.InternalName} FormMode={f.CurrentMode} />
+              {/* <FormField key={`formfield_${f.InternalName}`} {...f} /> */}
+            </div>
+          </div>
+        ))}
+      </React.Fragment>
+    }
+  </div>;
 };

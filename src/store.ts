@@ -28,7 +28,7 @@ const storeConfig = {
   } as IFormManagerProps,
   actionsCreators: {
     initStore: async (state: IFormManagerProps, actions: IFormManagerActions, sPWebUrl: string, currentListId: string,
-        currentMode: number, currentItemId?: number, contentTypeId?: string): Promise<IFormManagerProps> => {
+      currentMode: number, currentItemId?: number, contentTypeId?: string): Promise<IFormManagerProps> => {
       configurePnp(sPWebUrl);
 
       let list = sp.web.lists.getById(currentListId);
@@ -39,14 +39,14 @@ const storeConfig = {
         if (!targetContentTypeId) {
           let uniqueContentTypeOrderObj: any = await list.rootFolder.uniqueContentTypeOrder.get();
           if (uniqueContentTypeOrderObj && uniqueContentTypeOrderObj.UniqueContentTypeOrder &&
-              uniqueContentTypeOrderObj.UniqueContentTypeOrder.results && uniqueContentTypeOrderObj.UniqueContentTypeOrder.results.length > 0) {
+            uniqueContentTypeOrderObj.UniqueContentTypeOrder.results && uniqueContentTypeOrderObj.UniqueContentTypeOrder.results.length > 0) {
             targetContentTypeId = uniqueContentTypeOrderObj.UniqueContentTypeOrder.results[0].StringValue;
           }
         }
         if (!targetContentTypeId) {
           let contentTypeOrderObj: any = await list.rootFolder.contentTypeOrder.get();
           if (contentTypeOrderObj && contentTypeOrderObj.ContentTypeOrder &&
-              contentTypeOrderObj.ContentTypeOrder.results && contentTypeOrderObj.ContentTypeOrder.results.length > 0) {
+            contentTypeOrderObj.ContentTypeOrder.results && contentTypeOrderObj.ContentTypeOrder.results.length > 0) {
             targetContentTypeId = contentTypeOrderObj.ContentTypeOrder.results[0].StringValue;
           }
         }
@@ -331,7 +331,7 @@ const getFieldControlValuesForValidatedUpdate = async (): Promise<any[]> => {
       continue;
     }
     if (fp.Type.match(/lookup/gi)) {
-    // if (fp.Type.match(/lookup/gi) || fp.Type.match(/user/gi)) {
+      // if (fp.Type.match(/lookup/gi) || fp.Type.match(/user/gi)) {
       if (fp.FormFieldValue != null) {
         if (!fp.IsMulti) {
           fieldValue = fp.FormFieldValue.Id.toString();
@@ -363,9 +363,11 @@ const getFieldControlValuesForValidatedUpdate = async (): Promise<any[]> => {
         fieldValue = fp.FormFieldValue.results.join(';#');
       }
     } else if (fp.Type.match(/datetime/gi)) {
-      let d = fp.FormFieldValue === null || fp.FormFieldValue === undefined ? new Date(1900, 0, 1) : new Date(Date.parse(fp.FormFieldValue));
+      fieldValue = fp.FormFieldValue === null || fp.FormFieldValue === undefined ? null : new Date(Date.parse(fp.FormFieldValue)).format('MM/dd/yyyy HH:mm');
       // fieldValue = d.format('dd/MM/yyyy HH:mm');
-      fieldValue = d.format('MM/dd/yyyy HH:mm');
+
+      //fieldValue = d.format('MM/dd/yyyy HH:mm');
+      console.log('Date fieldValue: ' + fieldValue);
     } else if (fp.Type.match(/number/gi)) {
       if (fp.FormFieldValue) {
         if (fp.NumberIsPercent) {
@@ -383,7 +385,7 @@ const getFieldControlValuesForValidatedUpdate = async (): Promise<any[]> => {
     } else {
       fieldValue = fieldValue.toString();
     }
-
+    console.log(fp.EntityPropertyName + ' = ' + JSON.stringify(fieldValue));
     toReturn.push({
       ErrorMessage: null,
       FieldName: fp.EntityPropertyName,
@@ -484,7 +486,7 @@ const saveFormData = async (): Promise<ISaveItemResult> => {
       exposedState;
     let formDataRegularFields =
       await getFieldControlValuesForValidatedUpdate();
-      // await FormFieldsStore.actions.getFieldControlValuesForPost();
+    // await FormFieldsStore.actions.getFieldControlValuesForPost();
 
     let itemCollection = globalState.PnPSPRest.web.lists.getById(globalState.CurrentListId).items;
     let action: Promise<any> = null;
@@ -504,7 +506,7 @@ const saveFormData = async (): Promise<ISaveItemResult> => {
         FormFieldsStore.actions.setItemId(currentItemId);
       }
     }
-      // action = itemCollection.getById(globalState.CurrentItemId).update(formDataRegularFields, globalState.ETag);
+    // action = itemCollection.getById(globalState.CurrentItemId).update(formDataRegularFields, globalState.ETag);
 
     action = itemCollection.getById(currentItemId).configure({
       headers: {
@@ -514,8 +516,8 @@ const saveFormData = async (): Promise<ISaveItemResult> => {
     }).validateUpdateListItem(formDataRegularFields);
 
     // try {
-      // debugger;
-      // let res: ItemAddResult | ItemUpdateResult = await action;
+    // debugger;
+    // let res: ItemAddResult | ItemUpdateResult = await action;
     let res = await action;
     if (res.ValidateUpdateListItem.results.some(f => f.HasException)) {
       let errors = res.ValidateUpdateListItem.results.reduce((prev, current) => {
@@ -562,7 +564,7 @@ const saveFormData = async (): Promise<ISaveItemResult> => {
           // add new attachment file data to global state
           let attachmentData =
             await globalState.PnPSPRest.web.lists.getById(globalState.CurrentListId)
-            .items.getById(toResolve.ItemId).attachmentFiles.get();
+              .items.getById(toResolve.ItemId).attachmentFiles.get();
           attachmentProps.FormFieldValue = attachmentData;
         }
 
@@ -647,6 +649,6 @@ export const FormFieldsStore = {
     clearValidatorsFromField: initedStore.actions.clearValidatorsFromField,
     setFieldPropValue: initedStore.actions.setFieldPropValue,
     setFormMessage: initedStore.actions.setFormMessage
-  // tslint:disable-next-line:one-line
+    // tslint:disable-next-line:one-line
   } as IFormManagerActions
 };

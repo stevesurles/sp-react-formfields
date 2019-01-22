@@ -2,13 +2,13 @@ import * as React from 'react';
 declare const EnhancedProvider: (setProvider: any, Provider: any, initialState: any) => {
     new (props: any): {
         render(): JSX.Element;
+        context: any;
         setState<K extends string | number | symbol>(state: any, callback?: () => void): void;
         forceUpdate(callBack?: () => void): void;
         readonly props: Readonly<{
             children?: React.ReactNode;
         }> & Readonly<any>;
         state: Readonly<any>;
-        context: any;
         refs: {
             [key: string]: React.ReactInstance;
         };
@@ -25,5 +25,6 @@ declare const EnhancedProvider: (setProvider: any, Provider: any, initialState: 
         componentWillUpdate?(nextProps: Readonly<any>, nextState: Readonly<any>, nextContext: any): void;
         UNSAFE_componentWillUpdate?(nextProps: Readonly<any>, nextState: Readonly<any>, nextContext: any): void;
     };
+    contextType?: React.Context<any>;
 };
 export default EnhancedProvider;

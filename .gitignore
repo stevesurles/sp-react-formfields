@@ -1,6 +1,6 @@
 # Dependencies
-/node_modules
-/bower_components
+node_modules/
+bower_components/
 
 # Nisc
 .DS_Store
@@ -16,7 +16,7 @@ yarn-error.log*
 # SharePoint Build Specific
 
 /config/private.*
-# /dist
-/tmp
-/cache
-# /lib
+dist/
+tmp/
+cache/
+lib/

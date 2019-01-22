@@ -172,23 +172,26 @@
 /*
  * FieldChoiceRenderer
  */
+ /*
  .ms-Dropdown-title {
   border-top: 0!important;
   border-left: 0!important;
   border-right: 0!important;
   border-bottom: 1px solid #a6a6a6!important;
-}
+} */
 /* FieldChoiceRenderer END */
 
 /*
  * FieldLookupRenderer
  */
+ /*
  .ms-BasePicker-text {
   border-top: 0!important;
   border-left: 0!important;
   border-right: 0!important;
   border-bottom: 1px solid #a6a6a6!important;
 }
+*/
 /* FieldLookupRenderer END */
 
 /*
@@ -1054,6 +1057,7 @@
 /*
  * FieldTextRenderer
  */
+ /*
  .ms-TextField-fieldGroup {
   border-top: 0!important;
   border-left: 0!important;
@@ -1063,6 +1067,6 @@
 
 .ms-TextField-fieldGroup > input, .ms-BasePicker-text > input {
   border: 0 !important;
-}
+}*/
 /* FieldUrlRenderer END */
 
