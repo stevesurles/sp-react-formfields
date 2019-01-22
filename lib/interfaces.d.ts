@@ -114,6 +114,7 @@ export interface IFieldProps {
     ValidationErrors?: string[];
     saveChangedFieldData?(fieldInternalName: string, newValue: any): void;
     getFieldRendererObject?(fieldRenderer: BaseFieldRenderer): void;
+    onChange?(newValue: any): void;
 }
 export interface ICreateFieldRendererConfig {
     FieldRendererComponent: BaseFieldRenderer;

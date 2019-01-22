@@ -31,12 +31,17 @@ export class FieldTextRenderer extends BaseFieldRenderer {
     return (<Label>{this.props.FormFieldValue}</Label>);
   }
 
+  handleChange(evt: any, newValue: string) {
+
+    this.setState({ currentValue: newValue });
+    this.trySetChangedValue(newValue);
+    console.log('handleChange: ' + newValue);
+    this.props.onChange(newValue);
+  }
+
   private renderNewOrEditForm() {
     return (<TextField
-      onChange={(newValue) => {
-        this.setState({ currentValue: newValue });
-        this.trySetChangedValue(newValue);
-      }}
+      onChange={(evt, newValue) => this.handleChange.bind(evt, newValue)}
       value={this.state.currentValue == null ? '' : this.state.currentValue}
     />);
   }
