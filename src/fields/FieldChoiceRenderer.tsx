@@ -88,7 +88,7 @@ export class FieldChoiceRenderer extends BaseFieldRenderer {
                 text: c,
                 selected: currentVal && currentVal.includes(c) };
             })}
-            placeHolder={this.props.IsMulti ? 'Select options' : 'Select an option'}
+            placeholder={this.props.IsMulti ? 'Select options' : 'Select an option'}
           />
         </div>
         <div style={middleAuxStyle}>&nbsp;</div>
