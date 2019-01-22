@@ -94,7 +94,7 @@ export class FieldChoiceRenderer extends BaseFieldRenderer {
         <div style={middleAuxStyle}>&nbsp;</div>
         <div style={auxStyle}>
             <TextField placeholder='Enter own option' value={this.state.ownOption == null ? '' : this.state.ownOption}
-            onChange={(newValue) => {
+            onChange={(evt, newValue) => {
               if (newValue !== this.state.ownOption) {
                 let currentVal = this.state.currentValue as any[];
                 let newCurrentVal = [];

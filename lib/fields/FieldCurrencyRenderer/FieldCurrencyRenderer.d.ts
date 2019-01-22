@@ -7,6 +7,6 @@ export declare class FieldCurrencyRenderer extends BaseFieldRenderer {
     protected renderEditForm(): JSX.Element;
     protected renderDispForm(): JSX.Element;
     private renderNewOrEditForm;
-    private onChanged;
+    private onChange;
     private onKeypress;
 }
