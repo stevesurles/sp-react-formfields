@@ -32,9 +32,9 @@ export class FieldBooleanRenderer extends BaseFieldRenderer {
 
   private renderNewOrEditForm() {
     return (<Toggle
-      onChange={(newValue) => {
-        this.setState({ currentValue: newValue });
-        this.trySetChangedValue(newValue);
+      onChange={(ev: React.MouseEvent<HTMLElement>, checked: boolean) => {
+        this.setState({ currentValue: checked });
+        this.trySetChangedValue(checked);
       }}
       checked={this.state.currentValue}
     />);
