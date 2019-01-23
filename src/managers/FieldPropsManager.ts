@@ -1,11 +1,14 @@
 import { IFieldProps, FormMode } from '../interfaces';
 import { SPRest, sp } from '@pnp/sp';
+import { any } from 'prop-types';
 
 export const FieldPropsManager = {
   createFieldRendererPropsFromFieldMetadata: async (fieldMetadata: any, formMode: number, currentListId: string, spListItem: any, spRest: SPRest) => {
     if (fieldMetadata == null) {
       return null;
     }
+
+
 
     let fieldProps = {
       SchemaXml: new DOMParser().parseFromString(fieldMetadata.SchemaXml, 'text/xml'),
@@ -24,7 +27,8 @@ export const FieldPropsManager = {
       ValidationErrors: [],
       IsValid: true,
       Validators: [],
-      ShowValidationErrors: false
+      ShowValidationErrors: false,
+      onChange: (event: any) => any
     } as IFieldProps;
 
     if (spListItem != null && spListItem[fieldProps.InternalName] != null && spListItem[fieldProps.InternalName].__deferred == null) {
@@ -36,6 +40,7 @@ export const FieldPropsManager = {
     return fieldProps;
   }
 };
+
 
 const addFieldTypeSpecificProperties = async (fieldProps: IFieldProps, fieldMetadata: any): Promise<IFieldProps> => {
   let result = fieldProps;
@@ -133,7 +138,16 @@ const addTextFieldProperties = async (fieldProps: IFieldProps, fieldMetadata: an
   if (fieldMetadata.MaxLength) {
     fieldProps.Max = fieldMetadata.MaxLength;
   }
+  console.log('in addTextFieldProperties: ' + fieldProps.FormFieldValue);
+  //fieldProps.onChange = await onChange(fieldProps, fieldProps.FormFieldValue);
+ // fieldProps.onChange(fieldProps.FormFieldValue);
   return fieldProps;
+};
+
+const onChange = async (fieldProps: IFieldProps, newValue: any) => {
+  console.log('in onChange: ' + newValue);
+  fieldProps.onChange(newValue);
+  return newValue;
 };
 
 const addMultilineTextFieldProperties = async (fieldProps: IFieldProps, fieldMetadata: any): Promise<IFieldProps> => {

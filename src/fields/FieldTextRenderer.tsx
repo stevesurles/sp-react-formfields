@@ -17,6 +17,7 @@ export class FieldTextRenderer extends BaseFieldRenderer {
 
     let max = props.Max ? props.Max : 255;
     FormFieldsStore.actions.addValidatorToField(ValidationManager.defaultValidators.maxLength, props.InternalName, max);
+
   }
 
   protected renderNewForm() {
@@ -31,17 +32,17 @@ export class FieldTextRenderer extends BaseFieldRenderer {
     return (<Label>{this.props.FormFieldValue}</Label>);
   }
 
-  handleChange(evt: any, newValue: string) {
+  private onChange(evt: any) {
 
-    this.setState({ currentValue: newValue });
-    this.trySetChangedValue(newValue);
-    console.log('handleChange: ' + newValue);
-    this.props.onChange(newValue);
+    this.setState({ currentValue: evt.target.value});
+    this.trySetChangedValue(evt.target.value);
+    // console.log('handleChange: ' + evt.target.value);
+    this.props.onChange(evt.target.value);
   }
 
   private renderNewOrEditForm() {
     return (<TextField
-      onChange={(evt, newValue) => this.handleChange.bind(evt, newValue)}
+      onChange={this.onChange.bind(this)}
       value={this.state.currentValue == null ? '' : this.state.currentValue}
     />);
   }

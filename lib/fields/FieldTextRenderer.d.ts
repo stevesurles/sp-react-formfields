@@ -6,6 +6,6 @@ export declare class FieldTextRenderer extends BaseFieldRenderer {
     protected renderNewForm(): JSX.Element;
     protected renderEditForm(): JSX.Element;
     protected renderDispForm(): JSX.Element;
-    handleChange(evt: any, newValue: string): void;
+    private onChange;
     private renderNewOrEditForm;
 }
