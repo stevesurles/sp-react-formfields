@@ -138,9 +138,7 @@ const addTextFieldProperties = async (fieldProps: IFieldProps, fieldMetadata: an
   if (fieldMetadata.MaxLength) {
     fieldProps.Max = fieldMetadata.MaxLength;
   }
-  console.log('in addTextFieldProperties: ' + fieldProps.FormFieldValue);
-  //fieldProps.onChange = await onChange(fieldProps, fieldProps.FormFieldValue);
- // fieldProps.onChange(fieldProps.FormFieldValue);
+
   return fieldProps;
 };
 

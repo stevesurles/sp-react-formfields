@@ -72,90 +72,104 @@ export class FormField extends React.Component<IFormFieldProps, any> {
 
   private SpecificFormField = (fieldProps: IFieldProps) => {
     let defaultElement = (<BaseFieldRenderer {...fieldProps} key={fieldProps.InternalName} />);
-    let onFieldDataChangeCallback = FormFieldsStore.actions.setFieldData;
+    //I think this should be something like: (fieldInternalName: string, newValue: any) => saveChangedFieldData?(fieldInternalName, newValue): void;
+    //because FormFieldsStore.actions.setFieldData is on the form level not the field level.
+    //OnChange event will be better because it will return the clean value and all the data in IFieldProps.
+    //let onFieldDataChangeCallback = FormFieldsStore.actions.setFieldData;
     if (fieldProps.Type === 'Text') {
       return <FieldTextRenderer
         {...fieldProps}
-        onChange={(evt: IFieldProps, newValue: any) => this.onChange(evt,newValue)}
         key={fieldProps.InternalName}
-        saveChangedFieldData={onFieldDataChangeCallback}
+        //saveChangedFieldData={onFieldDataChangeCallback}
+        onChange={(evt: IFieldProps, newValue: any) => this.onChange(evt,newValue)}
       />;
     }
     if (fieldProps.Type === 'Note') {
       return <FieldMultilineTextRenderer
         {...fieldProps}
         key={fieldProps.InternalName}
-        saveChangedFieldData={onFieldDataChangeCallback}
+        //saveChangedFieldData={onFieldDataChangeCallback}
+        onChange={(evt: IFieldProps, newValue: any) => this.onChange(evt,newValue)}
       />;
     }
     if (fieldProps.Type === 'Boolean') {
       return <FieldBooleanRenderer
         {...fieldProps}
         key={fieldProps.InternalName}
-        saveChangedFieldData={onFieldDataChangeCallback}
+       // saveChangedFieldData={onFieldDataChangeCallback}
+        onChange={(evt: IFieldProps, newValue: any) => this.onChange(evt,newValue)}
       />;
     }
     if (fieldProps.Type === 'Number') {
       return <FieldNumberRenderer
         {...fieldProps}
         key={fieldProps.InternalName}
-        saveChangedFieldData={onFieldDataChangeCallback}
+       // saveChangedFieldData={onFieldDataChangeCallback}
+        onChange={(evt: IFieldProps, newValue: any) => this.onChange(evt,newValue)}
       />;
     }
     if (fieldProps.Type === 'Currency') {
       return <FieldCurrencyRenderer
         {...fieldProps}
         key={fieldProps.InternalName}
-        saveChangedFieldData={onFieldDataChangeCallback}
+       // saveChangedFieldData={onFieldDataChangeCallback}
+        onChange={(evt: IFieldProps, newValue: any) => this.onChange(evt,newValue)}
       />;
     }
     if (fieldProps.Type === 'URL') {
       return <FieldUrlRenderer
         {...fieldProps}
         key={fieldProps.InternalName}
-        saveChangedFieldData={onFieldDataChangeCallback}
+       // saveChangedFieldData={onFieldDataChangeCallback}
+        onChange={(evt: IFieldProps, newValue: any) => this.onChange(evt,newValue)}
       />;
     }
     if (fieldProps.Type === 'DateTime') {
       return <FieldDateTimeRenderer
         {...fieldProps}
         key={fieldProps.InternalName}
-        saveChangedFieldData={onFieldDataChangeCallback}
+       // saveChangedFieldData={onFieldDataChangeCallback}
+        onChange={(evt: IFieldProps, newValue: any) => this.onChange(evt,newValue)}
       />;
     }
     if (fieldProps.Type.match(/user/gi)) {
       return <FieldUserRenderer
         {...fieldProps}
         key={fieldProps.InternalName}
-        saveChangedFieldData={onFieldDataChangeCallback}
+      // saveChangedFieldData={onFieldDataChangeCallback}
+        onChange={(evt: IFieldProps, newValue: any) => this.onChange(evt,newValue)}
       />;
     }
     if (fieldProps.Type.match(/choice/gi)) {
       return <FieldChoiceRenderer
         {...fieldProps}
         key={fieldProps.InternalName}
-        saveChangedFieldData={onFieldDataChangeCallback}
+       // saveChangedFieldData={onFieldDataChangeCallback}
+        onChange={(evt: IFieldProps, newValue: any) => this.onChange(evt,newValue)}
       />;
     }
     if (fieldProps.Type.match(/lookup/gi)) {
       return <FieldLookupRenderer
         {...fieldProps}
         key={fieldProps.InternalName}
-        saveChangedFieldData={onFieldDataChangeCallback}
+       // saveChangedFieldData={onFieldDataChangeCallback}
+        onChange={(evt: IFieldProps, newValue: any) => this.onChange(evt,newValue)}
       />;
     }
     if (fieldProps.Type.match(/TaxonomyFieldType/gi)) {
       return <FieldTaxonomyRenderer
         {...fieldProps}
         key={fieldProps.InternalName}
-        saveChangedFieldData={onFieldDataChangeCallback}
+      //  saveChangedFieldData={onFieldDataChangeCallback}
+        onChange={(evt: IFieldProps, newValue: any) => this.onChange(evt,newValue)}
       />;
     }
     if (fieldProps.Type.match(/attachments/gi)) {
       return <FieldAttachmentRenderer
         {...fieldProps}
         key={fieldProps.InternalName}
-        saveChangedFieldData={onFieldDataChangeCallback}
+       // saveChangedFieldData={onFieldDataChangeCallback}
+        onChange={(evt: IFieldProps, newValue: any) => this.onChange(evt,newValue)}
       />;
     }
     return defaultElement;
