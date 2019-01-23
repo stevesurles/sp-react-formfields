@@ -63,10 +63,11 @@ export class FormField extends React.Component<IFormFieldProps, any> {
     let ConnectedFormField = FormFieldsStore.connect((state: IFormManagerProps) => getFieldPropsByInternalName(state.Fields, this.props.InternalName))(this.SpecificFormField);
     return <ConnectedFormField />;
   }
-  private onChange(evt: any) {
+  private onChange(evt: IFieldProps, newValue: any) {
 
-   // console.log('handleChange: ' + evt);
-    this.props.onChange(evt);
+    //console.log('FormFields handleChange: ' + newValue);
+    //console.log(evt);
+    this.props.onChange(evt, newValue);
   }
 
   private SpecificFormField = (fieldProps: IFieldProps) => {
@@ -75,7 +76,7 @@ export class FormField extends React.Component<IFormFieldProps, any> {
     if (fieldProps.Type === 'Text') {
       return <FieldTextRenderer
         {...fieldProps}
-        onChange={this.onChange.bind(this)}
+        onChange={(evt: IFieldProps, newValue: any) => this.onChange(evt,newValue)}
         key={fieldProps.InternalName}
         saveChangedFieldData={onFieldDataChangeCallback}
       />;

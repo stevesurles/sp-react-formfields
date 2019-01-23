@@ -85,6 +85,9 @@ export class BaseFieldRenderer extends React.Component<IFieldProps, any> {
   }
 
   protected trySetChangedValue(newValue: any) {
+    console.log('BaseFieldRenderer.trySetChangedValue: ' + newValue);
+    console.log(this.props);
+    this.props.onChange(this.props, newValue);
     if (this.props != null && this.props.saveChangedFieldData != null) {
       this.props.saveChangedFieldData(this.props.InternalName, newValue);
     }

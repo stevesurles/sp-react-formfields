@@ -28,7 +28,7 @@ export const FieldPropsManager = {
       IsValid: true,
       Validators: [],
       ShowValidationErrors: false,
-      onChange: (event: any) => any
+      onChange: (evt: IFieldProps, newValue: any) => any
     } as IFieldProps;
 
     if (spListItem != null && spListItem[fieldProps.InternalName] != null && spListItem[fieldProps.InternalName].__deferred == null) {
@@ -144,11 +144,11 @@ const addTextFieldProperties = async (fieldProps: IFieldProps, fieldMetadata: an
   return fieldProps;
 };
 
-const onChange = async (fieldProps: IFieldProps, newValue: any) => {
+/* const onChange = async (fieldProps: IFieldProps, newValue: any) => {
   console.log('in onChange: ' + newValue);
-  fieldProps.onChange(newValue);
+  fieldProps.onChange(fieldProps, newValue);
   return newValue;
-};
+}; */
 
 const addMultilineTextFieldProperties = async (fieldProps: IFieldProps, fieldMetadata: any): Promise<IFieldProps> => {
   fieldProps.IsRichText = fieldMetadata.RichText;

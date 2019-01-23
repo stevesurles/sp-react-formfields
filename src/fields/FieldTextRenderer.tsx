@@ -36,8 +36,7 @@ export class FieldTextRenderer extends BaseFieldRenderer {
 
     this.setState({ currentValue: evt.target.value});
     this.trySetChangedValue(evt.target.value);
-    // console.log('handleChange: ' + evt.target.value);
-    this.props.onChange(evt.target.value);
+
   }
 
   private renderNewOrEditForm() {

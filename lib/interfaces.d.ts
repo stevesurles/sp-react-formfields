@@ -62,7 +62,7 @@ export interface IFormFieldProps {
     InternalName: string;
     FormMode?: number;
     CustomValidators?: Function[];
-    onChange?: (event: any) => any;
+    onChange?: (evt: IFieldProps, value: string) => any;
 }
 export interface IValidateFieldResult {
     IsValid: boolean;
@@ -115,7 +115,7 @@ export interface IFieldProps {
     ValidationErrors?: string[];
     saveChangedFieldData?(fieldInternalName: string, newValue: any): void;
     getFieldRendererObject?(fieldRenderer: BaseFieldRenderer): void;
-    onChange?: (event: any) => any;
+    onChange?: (evt: IFieldProps, value: any) => any;
 }
 export interface ICreateFieldRendererConfig {
     FieldRendererComponent: BaseFieldRenderer;
